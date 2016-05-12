@@ -1,0 +1,55 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>js动画</title>
+<style>
+#div1,#div2,#div3,#div4{
+	width:100px;
+	line-height:100px;
+	left:-500px;
+	top:500px;
+	position:absolute;
+	text-align:center;
+	background-color:#B1EBB1;
+	}
+</style>
+</head>
+
+<body>
+<input type="button" id="btn1" value="点击执行动画" />
+<input type="button" id="btn2" value="点击重置" onclick="location.reload()"/>
+<div id="div1">1</div>
+<div id="div2">2</div>
+<div id="div3">3</div>
+<div id="div4">4</div>
+
+<script>
+var btn1=document.getElementById("btn1");
+var btn2=document.getElementById("btn2");
+function elemove(eleid,finx,finy){
+    var h=window.innerHeight*finy;  
+	var ele=document.getElementById(eleid);
+	var elex=parseInt(ele.offsetLeft);
+	var eley=parseInt(ele.offsetTop);
+    var xspeed=Math.ceil((finx-elex)/10);
+    elex=elex+xspeed;
+    var yspeed=Math.ceil((h-eley)/10);
+    eley=eley+yspeed;
+    ele.style.left=elex+"px";
+    ele.style.top=eley+"px";
+	movement = setTimeout("elemove('"+eleid+"',"+finx+","+finy+")",40);
+}
+
+
+btn1.onclick=function(){
+setInterval(elemove("div1",200,0.15),20);
+setInterval(elemove("div2",250,0.35),20);
+setInterval(elemove("div3",300,0.55),20);
+setInterval(elemove("div4",350,0.75),20);
+}
+
+</script>
+</body>
+</html>
